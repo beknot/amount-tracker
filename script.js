@@ -1,23 +1,23 @@
-let list = document.getElementById("list");
-let totalEl = document.getElementById("total");
+let singleList = document.getElementById("single-list");
+let singleTotalEl = document.getElementById("single-total");
 
 // Add new row
-function addRow(name = "", amount = "") {
+function addSingleAmount(name = "", amount = "") {
     let row = document.createElement("div");
     row.className = "row";
 
     row.innerHTML = `
         <input type="text" class="name" placeholder="Name" value="${name}">
-        <input type="number" class="amount" placeholder="Amount" value="${amount}" max="999999">
-        <button onclick="removeRow(this)">X</button>
+        <input type="number" class="single-amount" placeholder="Amount" value="${amount}" max="999999">
+        <button onclick="removeSingleAmount(this)">X</button>
     `;
 
-    list.appendChild(row);
+    singleList.appendChild(row);
 
-    let amountInput = row.querySelector(".amount");
+    let singleInput = row.querySelector(".single-amount");
 
-    // 🔒 Restrict input behavior
-    amountInput.addEventListener("input", function () {
+    // Restrict input behavior
+    singleInput.addEventListener("input", function () {
         // Remove non-digits (prevents e, +, -, .)
         this.value = this.value.replace(/\D/g, "");
 
@@ -31,19 +31,19 @@ function addRow(name = "", amount = "") {
             this.value = "999999";
         }
 
-        updateTotal();
+        updateSingleTotal();
     });
 }
 
 // Remove row
-function removeRow(btn) {
+function removeSingleAmount(btn) {
     btn.parentElement.remove();
-    updateTotal();
+    updateSingleTotal();
 }
 
 // Calculate total
-function updateTotal() {
-    let amounts = document.querySelectorAll(".amount");
+function updateSingleTotal() {
+    let amounts = document.querySelectorAll(".single-amount");
     let total = 0;
 
     amounts.forEach(input => {
@@ -53,8 +53,8 @@ function updateTotal() {
         }
     });
 
-    totalEl.textContent = total;
+    singleTotalEl.textContent = total;
 }
 
 // Add first row by default
-addRow();
+addSingleAmount();
