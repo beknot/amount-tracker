@@ -1,48 +1,48 @@
-let container = document.getElementById("calculators");
+let container = document.getElementById("trackers");
 
 // Add new calculator
-function addCalculator() {
+function addTracker() {
     let calc = document.createElement("div");
-    calc.className = "calculator";
+    calc.className = "tracker";
 
     calc.innerHTML = `
-        <div class="list"></div>
+        <div class="multiple-list"></div>
 
-        <button onclick="addRow(this)">+ Add Row</button>
-        <button onclick="removeCalculator(this)">Delete Calculator</button>
+        <button onclick="addAmount(this)">+ Add Amount</button>
+        <button onclick="removeTracker(this)">Delete Tracker</button>
 
-        <h4>Total: <span class="total">0</span></h4>
+        <h4>Total: <span class="multiple-total">0</span></h4>
         <hr>
     `;
 
     container.appendChild(calc);
 
     // Add first row by default
-    addRow(calc.querySelector("button"));
+    addAmount(calc.querySelector("button"));
 }
 
 // Remove calculator
-function removeCalculator(btn) {
-    btn.closest(".calculator").remove();
+function removeTracker(btn) {
+    btn.closest(".tracker").remove();
 }
 
 // Add row inside specific calculator
-function addRow(btn, name = "", amount = "") {
-    let calc = btn.closest(".calculator");
-    let list = calc.querySelector(".list");
+function addAmount(btn, name = "", amount = "") {
+    let calc = btn.closest(".tracker");
+    let multipleList = calc.querySelector(".multiple-list");
 
     let row = document.createElement("div");
     row.className = "row";
 
     row.innerHTML = `
         <input type="text" class="name" placeholder="Name" value="${name}">
-        <input type="number" class="amount" placeholder="Amount" value="${amount}">
-        <button onclick="removeRow(this)">X</button>
+        <input type="number" class="multiple-amount" placeholder="Amount" value="${amount}">
+        <button onclick="removeTracker(this)">X</button>
     `;
 
-    list.appendChild(row);
+    multipleList.appendChild(row);
 
-    let amountInput = row.querySelector(".amount");
+    let amountInput = row.querySelector(".multiple-amount");
 
     // Restrict input + update total
     amountInput.addEventListener("input", function () {
@@ -61,15 +61,15 @@ function addRow(btn, name = "", amount = "") {
 }
 
 // Remove row
-function removeRow(btn) {
-    let calc = btn.closest(".calculator");
+function removeTracker(btn) {
+    let calc = btn.closest(".tracker");
     btn.parentElement.remove();
     updateTotal(calc);
 }
 
 // Update total for specific calculator
 function updateTotal(calc) {
-    let amounts = calc.querySelectorAll(".amount");
+    let amounts = calc.querySelectorAll(".multiple-amount");
     let total = 0;
 
     amounts.forEach(input => {
@@ -79,8 +79,8 @@ function updateTotal(calc) {
         }
     });
 
-    calc.querySelector(".total").textContent = total.toLocaleString();
+    calc.querySelector(".multiple-total").textContent = total.toLocaleString();
 }
 
 // Initialize first calculator
-addCalculator();
+addTracker();
