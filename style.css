@@ -485,3 +485,124 @@ footer {
   color: var(--border);
   text-transform: uppercase;
 }
+/* ===============================
+   RESPONSIVE FIXES (MOBILE FIRST)
+================================ */
+
+/* Tablets */
+@media (max-width: 900px) {
+  .wrapper {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  header h1 {
+    font-size: 2.4rem;
+  }
+
+  .grand-value {
+    font-size: 1.8rem;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+
+  body {
+    padding: 20px 10px 60px;
+  }
+
+  /* Tabs stack better */
+  .tab-bar {
+    flex-direction: column;
+  }
+
+  .tab-btn {
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Cards tighter */
+  .card {
+    padding: 18px;
+  }
+
+  /* Rows become vertical (VERY important) */
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .row-num {
+    text-align: left;
+    width: auto;
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+  }
+
+  /* Buttons full width */
+  .btn-add,
+  .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  /* Tracker header becomes stacked */
+  .tracker-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .tracker-name-input {
+    width: 100%;
+  }
+
+  .tracker-total-mini {
+    align-self: flex-start;
+  }
+
+  .btn-del-tracker {
+    align-self: flex-end;
+  }
+
+  /* Grand total stacked */
+  .grand-total-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .grand-value {
+    font-size: 1.6rem;
+  }
+
+  /* Add tracker button easier to tap */
+  .btn-add-tracker {
+    padding: 16px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  .total-value {
+    font-size: 1.5rem;
+  }
+
+  .grand-value {
+    font-size: 1.4rem;
+  }
+}
