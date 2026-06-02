@@ -1,86 +1,170 @@
-let container = document.getElementById("trackers");
+// TABS
+function openTab(tabId) {
 
-// Add new calculator
-function addTracker() {
-    let calc = document.createElement("div");
-    calc.className = "tracker";
+    document.querySelectorAll(".tab-content")
+        .forEach(tab => tab.classList.remove("active"));
 
-    calc.innerHTML = `
-        <div class="multiple-list"></div>
+    document.querySelectorAll(".tab-btn")
+        .forEach(btn => btn.classList.remove("active"));
 
-        <button onclick="addAmount(this)">+ Add Amount</button>
-        <button onclick="removeTracker(this)">Delete Tracker</button>
+    document.getElementById(tabId)
+        .classList.add("active");
 
-        <h4>Total: <span class="multiple-total">0</span></h4>
-        <hr>
-    `;
-
-    container.appendChild(calc);
-
-    // Add first row by default
-    addAmount(calc.querySelector("button"));
+    event.target.classList.add("active");
 }
 
-// Remove calculator
-function removeTracker(btn) {
-    btn.closest(".tracker").remove();
-}
+/* ===================================================
+   SINGLE TRACKER
+=================================================== */
 
-// Add row inside specific calculator
-function addAmount(btn, name = "", amount = "") {
-    let calc = btn.closest(".tracker");
-    let multipleList = calc.querySelector(".multiple-list");
+const singleList = document.getElementById("single-list");
+const singleTotalEl = document.getElementById("single-total");
 
-    let row = document.createElement("div");
+function addSingleAmount(name = "", amount = "") {
+
+    const row = document.createElement("div");
+
     row.className = "row";
 
     row.innerHTML = `
-        <input type="text" class="name" placeholder="Name" value="${name}">
-        <input type="number" class="multiple-amount" placeholder="Amount" value="${amount}">
-        <button onclick="removeTracker(this)">X</button>
+        <input type="text" placeholder="Name" value="${name}">
+        <input type="number" class="single-amount" placeholder="Amount" value="${amount}">
+        <button class="delete-btn" onclick="removeSingleAmount(this)">✕</button>
     `;
 
-    multipleList.appendChild(row);
+    singleList.appendChild(row);
 
-    let amountInput = row.querySelector(".multiple-amount");
+    const input = row.querySelector(".single-amount");
 
-    // Restrict input + update total
-    amountInput.addEventListener("input", function () {
+    input.addEventListener("input", function () {
+
         this.value = this.value.replace(/\D/g, "");
 
         if (this.value.length > 6) {
             this.value = this.value.slice(0, 6);
         }
 
-        if (parseInt(this.value || 0) > 999999) {
-            this.value = "999999";
-        }
-
-        updateTotal(calc);
+        updateSingleTotal();
     });
+
+    updateSingleTotal();
 }
 
-// Remove row
-function removeTracker(btn) {
-    let calc = btn.closest(".tracker");
+function removeSingleAmount(btn) {
+
     btn.parentElement.remove();
-    updateTotal(calc);
+
+    updateSingleTotal();
 }
 
-// Update total for specific calculator
-function updateTotal(calc) {
-    let amounts = calc.querySelectorAll(".multiple-amount");
+function updateSingleTotal() {
+
     let total = 0;
 
-    amounts.forEach(input => {
-        let val = parseInt(input.value);
-        if (!isNaN(val)) {
-            total += val;
-        }
+    document.querySelectorAll(".single-amount").forEach(input => {
+
+        total += parseInt(input.value || 0);
     });
 
-    calc.querySelector(".multiple-total").textContent = total.toLocaleString();
+    singleTotalEl.textContent = total.toLocaleString();
 }
 
-// Initialize first calculator
+/* ===================================================
+   MULTIPLE TRACKER
+=================================================== */
+
+const trackersContainer = document.getElementById("trackers");
+
+function addTracker() {
+
+    const tracker = document.createElement("div");
+
+    tracker.className = "tracker-card";
+
+    tracker.innerHTML = `
+        <div class="multiple-list"></div>
+
+        <div class="tracker-actions">
+            <button class="primary-btn" onclick="addAmount(this)">
+                + Add Amount
+            </button>
+
+            <button class="danger-btn" onclick="removeTrackerCard(this)">
+                Delete Tracker
+            </button>
+        </div>
+
+        <div class="total-box">
+            Total: <span class="multiple-total">0</span>
+        </div>
+    `;
+
+    trackersContainer.appendChild(tracker);
+
+    addAmount(tracker.querySelector(".primary-btn"));
+}
+
+function removeTrackerCard(btn) {
+
+    btn.closest(".tracker-card").remove();
+}
+
+function addAmount(btn, name = "", amount = "") {
+
+    const tracker = btn.closest(".tracker-card");
+
+    const list = tracker.querySelector(".multiple-list");
+
+    const row = document.createElement("div");
+
+    row.className = "row";
+
+    row.innerHTML = `
+        <input type="text" placeholder="Name" value="${name}">
+        <input type="number" class="multiple-amount" placeholder="Amount" value="${amount}">
+        <button class="delete-btn" onclick="removeAmountRow(this)">✕</button>
+    `;
+
+    list.appendChild(row);
+
+    const input = row.querySelector(".multiple-amount");
+
+    input.addEventListener("input", function () {
+
+        this.value = this.value.replace(/\D/g, "");
+
+        if (this.value.length > 6) {
+            this.value = this.value.slice(0, 6);
+        }
+
+        updateTrackerTotal(tracker);
+    });
+
+    updateTrackerTotal(tracker);
+}
+
+function removeAmountRow(btn) {
+
+    const tracker = btn.closest(".tracker-card");
+
+    btn.parentElement.remove();
+
+    updateTrackerTotal(tracker);
+}
+
+function updateTrackerTotal(tracker) {
+
+    let total = 0;
+
+    tracker.querySelectorAll(".multiple-amount").forEach(input => {
+
+        total += parseInt(input.value || 0);
+    });
+
+    tracker.querySelector(".multiple-total").textContent =
+        total.toLocaleString();
+}
+
+// Initial rows
+addSingleAmount();
 addTracker();
