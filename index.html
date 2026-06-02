@@ -1,64 +1,57 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amount Tracker</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Amount Tracker</title>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class="eyebrow">◆ Financial Tool ◆</div>
+                <h1>Amount <em>Tracker</em></h1>
+                <p class="subtitle">Track · Sum · Organise</p>
+            </header>
 
-<div class="container">
+            <!-- Tab Bar -->
+            <div class="tab-bar">
+                <button class="tab-btn active" data-icon="◎" onclick="switchTab('single', this)">Single Tracker</button>
+                <button class="tab-btn" data-icon="◈" onclick="switchTab('multiple', this)">Multiple Trackers</button>
+            </div>
 
-    <h1>💰 Amount Tracker</h1>
+            <!-- SINGLE PANEL -->
+            <div class="panel active" id="panel-single">
+                <div class="card">
+                    <div class="section-label">Entries</div>
+                    <div id="single-list"></div>
+                    <p class="empty-hint" id="single-empty" style="display:none">No entries yet. Add one below.</p>
+                    <div class="actions">
+                        <button class="btn-add" onclick="addSingleAmount()">+ Add Entry</button>
+                        <button class="btn-secondary" onclick="clearSingle()">Clear All</button>
+                    </div>
+                    <div class="total-block">
+                        <span class="total-label">Total</span>
+                        <span class="total-value" id="single-total">0</span>
+                    </div>
+                </div>
+            </div>
 
-    <div class="tabs">
-        <button class="tab-btn active" onclick="openTab('single')">
-            Single Tracker
-        </button>
-
-        <button class="tab-btn" onclick="openTab('multiple')">
-            Multiple Tracker
-        </button>
-    </div>
-
-    <!-- SINGLE -->
-    <div id="single" class="tab-content active">
-
-        <div class="card">
-            <h2>Single Amount Tracker</h2>
-
-            <div id="single-list"></div>
-
-            <button class="primary-btn" onclick="addSingleAmount()">
-                + Add Amount
-            </button>
-
-            <div class="total-box">
-                Total: <span id="single-total">0</span>
+            <!-- MULTIPLE PANEL -->
+            <div class="panel" id="panel-multiple">
+                <div id="trackers-container"></div>
+                <button class="btn-add-tracker" onclick="addTracker()">＋ Add New Tracker</button>
+                <div class="grand-total-card">
+                    <div>
+                        <div class="grand-label">Grand Total</div>
+                        <div style="font-size:10px; color:rgba(245,240,232,0.35); letter-spacing:0.05em; margin-top:2px;">All trackers combined</div>
+                    </div>
+                    <div class="grand-value"><span class="currency"></span><span id="grand-total">0</span></div>
+                </div>
             </div>
         </div>
-
-    </div>
-
-    <!-- MULTIPLE -->
-    <div id="multiple" class="tab-content">
-
-        <div class="card">
-            <h2>Multiple Amount Tracker</h2>
-
-            <div id="trackers"></div>
-
-            <button class="primary-btn" onclick="addTracker()">
-                + Add Tracker
-            </button>
-        </div>
-
-    </div>
-
-</div>
-
-<script src="script.js"></script>
-
-</body>
+        <footer>amount tracker &nbsp;·&nbsp; Beknot Pages</footer>
+        <script src="script.js"></script>
+    </body>
 </html>
