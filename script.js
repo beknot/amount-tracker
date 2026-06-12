@@ -27,10 +27,10 @@ function addSingleAmount(name = '', amount = '') {
 
     const inp = row.querySelector('.single-amount');
     inp.addEventListener('input', function () {
-    this.value = this.value.replace(/\D/g, '');
-    if (this.value.length > 7) this.value = this.value.slice(0, 7);
-    if (parseInt(this.value || 0) > 9999999) this.value = '9999999';
-    updateSingleTotal();
+        this.value = this.value.replace(/\D/g, '');
+        if (this.value.length > 7) this.value = this.value.slice(0, 7);
+        if (parseInt(this.value || 0) > 9999999) this.value = '9999999';
+        updateSingleTotal();
     });
     inp.focus();
 }
@@ -123,11 +123,11 @@ function addMultiAmount(btn, name = '', amount = '') {
 
     const inp = row.querySelector('.multi-amount');
     inp.addEventListener('input', function () {
-    this.value = this.value.replace(/\D/g, '');
-    if (this.value.length > 7) this.value = this.value.slice(0, 7);
-    if (parseInt(this.value || 0) > 9999999) this.value = '9999999';
-    updateTrackerTotal(card);
-    updateGrandTotal();
+        this.value = this.value.replace(/\D/g, '');
+        if (this.value.length > 7) this.value = this.value.slice(0, 7);
+        if (parseInt(this.value || 0) > 9999999) this.value = '9999999';
+        updateTrackerTotal(card);
+        updateGrandTotal();
     });
     inp.focus();
 }

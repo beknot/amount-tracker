@@ -13,7 +13,6 @@
 }
 
 body {
-  font-family: 'DM Mono', monospace;
   background: var(--paper);
   color: var(--ink);
   min-height: 100vh;
@@ -23,18 +22,6 @@ body {
   padding: 40px 16px 80px;
   position: relative;
   overflow-x: hidden;
-}
-
-/* Background texture */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(180,170,155,0.15) 28px, rgba(180,170,155,0.15) 29px),
-    repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(180,170,155,0.08) 28px, rgba(180,170,155,0.08) 29px);
-  pointer-events: none;
-  z-index: 0;
 }
 
 /* Decorative corner marks */
@@ -62,7 +49,6 @@ header {
 }
 
 header .eyebrow {
-  font-family: 'DM Mono', monospace;
   font-size: 10px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -71,17 +57,16 @@ header .eyebrow {
 }
 
 header h1 {
-  font-family: 'DM Serif Display', serif;
   font-size: clamp(2rem, 6vw, 3.2rem);
   line-height: 1.05;
   color: var(--ink);
   letter-spacing: -0.02em;
 }
 
-header h1 em {
+/* header h1 em {
   font-style: italic;
   color: var(--accent);
-}
+} */
 
 header .subtitle {
   margin-top: 10px;
@@ -108,7 +93,6 @@ header .subtitle {
   padding: 10px 16px;
   border: none;
   background: transparent;
-  font-family: 'DM Mono', monospace;
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -200,7 +184,6 @@ input[type="number"] {
   background: var(--paper);
   border-radius: 4px;
   padding: 9px 12px;
-  font-family: 'DM Mono', monospace;
   font-size: 12px;
   color: var(--ink);
   outline: none;
@@ -257,7 +240,6 @@ input[type="number"] { -moz-appearance: textfield; }
   border: 1.5px solid var(--ink);
   background: transparent;
   border-radius: 4px;
-  font-family: 'DM Mono', monospace;
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -276,7 +258,6 @@ input[type="number"] { -moz-appearance: textfield; }
   border: 1.5px solid var(--border);
   background: transparent;
   border-radius: 4px;
-  font-family: 'DM Mono', monospace;
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -304,7 +285,6 @@ input[type="number"] { -moz-appearance: textfield; }
 }
 
 .total-value {
-  font-family: 'DM Serif Display', serif;
   font-size: 2rem;
   color: var(--ink);
   letter-spacing: -0.02em;
@@ -356,7 +336,6 @@ input[type="number"] { -moz-appearance: textfield; }
 .tracker-name-input {
   border: none;
   background: transparent;
-  font-family: 'DM Serif Display', serif;
   font-size: 1rem;
   color: var(--ink);
   padding: 2px 0;
@@ -369,7 +348,6 @@ input[type="number"] { -moz-appearance: textfield; }
 .tracker-name-input::placeholder { color: #ccc8c0; font-style: italic; }
 
 .tracker-total-mini {
-  font-family: 'DM Mono', monospace;
   font-size: 13px;
   font-weight: 500;
   color: var(--accent);
@@ -414,7 +392,6 @@ input[type="number"] { -moz-appearance: textfield; }
 }
 
 .grand-value {
-  font-family: 'DM Serif Display', serif;
   font-size: 2.2rem;
   color: var(--paper);
   letter-spacing: -0.02em;
@@ -425,7 +402,6 @@ input[type="number"] { -moz-appearance: textfield; }
   font-size: 1.1rem;
   opacity: 0.6;
   vertical-align: super;
-  font-family: 'DM Mono', monospace;
   font-weight: 300;
 }
 
@@ -436,7 +412,6 @@ input[type="number"] { -moz-appearance: textfield; }
   border: 1.5px dashed var(--border);
   background: transparent;
   border-radius: 8px;
-  font-family: 'DM Mono', monospace;
   font-size: 11px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
